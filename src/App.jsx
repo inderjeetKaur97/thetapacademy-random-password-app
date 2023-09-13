@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import Box from '@mui/material/Box';
 import {
@@ -33,21 +33,21 @@ function App() {
   const [openCopied, setopenCopied] = useState(false);
   const [lastFivePasswords, setlastFivePasswords] = useState([]);
 
-  const handleCopyPassword = useCallback((text) => {
+  const handleCopyPassword = (text) => {
     navigator.clipboard.writeText(text);
     setopenCopied(true);
-  });
-  const handleCustomPassword = useCallback((e) => {
+  };
+  const handleCustomPassword = (e) => {
     const { name } = e.target;
     setcustomPassword({ ...customPassword, [name]: !customPassword[name] });
-  });
-  const handleGenerate = useCallback(() => {
+  };
+  const handleGenerate = () => {
     if (Object.values(customPassword).some((val) => val !== false)) {
       const password = GeneratePassword(customLength, customPassword);
       setgenPassword(password);
       settextBoxLabel(null);
     }
-  });
+  };
 
   useEffect(() => {
     if (genPassword.length) {

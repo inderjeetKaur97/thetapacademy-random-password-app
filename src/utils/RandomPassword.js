@@ -14,13 +14,14 @@ const getKey = [
     return KEYS.symbol[Math.floor(Math.random() * KEYS.symbol.length)];
   },
 ];
-
+const type = ['uppercase', 'lowercase', 'numeric', 'symbol'];
 export default function GeneratePassword(customLength, customPassword) {
   let password = '';
   while (customLength > password.length) {
-    const keyToAdd = getKey[Math.floor(Math.random() * getKey.length)];
-    const type = keyToAdd.name;
-    const isChecked = customPassword[`${type}`];
+    const randomNum = Math.floor(Math.random() * getKey.length);
+    const funcName = type[randomNum];
+    const keyToAdd = getKey[randomNum];
+    const isChecked = customPassword[`${funcName}`];
     if (isChecked) {
       password += keyToAdd();
     }
